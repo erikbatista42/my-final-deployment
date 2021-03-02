@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Game - {{ game.name }}</h1>
+
+<p><img src="{{ game.photo_url }}" width="250px" height="250px"></p>
+
+<p><strong>Gamestop:</strong> {{ game.gamestop.title }}</p>
+
+
+<h2>Edit Game</h2>
+
+<form method="POST" action="{{ url_for('main.game_detail', game_id=game.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <legend>Please enter your information:</legend>
+
+        {{ form.name.label }}
+        {{ form.name }}
+        <br><br><br>
+        {{ form.photo_url.label }}
+        {{ form.photo_url }}
+        <br><br><br>
+        {{ form.gamestop.label }}
+        {{ form.gamestop }}
+        <br><br><br>
+        {{ form.submit }}
+    </fieldset>
+</form>
+
+{% endblock %}

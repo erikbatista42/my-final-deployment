@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ gamestop.title }}</h1>
+
+
+<form method="POST" action="{{ url_for('main.gamestop_detail', gamestop_id=gamestop.id) }}">
+    {{ form.csrf_token }}
+    <fieldset>
+        <br>
+        <strong>- Created by: {{ gamestop.user.username }}</strong>
+        <br><br><br>
+        <legend>Edit this Gamestop</legend>
+
+        {{ form.title.label }}
+        {{ form.title }}
+        
+        {{ form.address.label }}
+        {{ form.address }}
+        
+        <!-- To do: Display games in store -->
+        <div class="games">
+            {% for game in gamestop.games %}
+            <div class="game-details">
+              <a href="/game/{{ game.id }}"><img src="{{ game.photo_url }}" alt="{{ game.name }}" width="200px">
+                <p><strong>{{ game.name }}</strong></p>
+              </a>
+
+            </div>
+            {% endfor %}
+          </div>
+          
+        <br><br>
+        {{ form.submit }}
+    </fieldset>
+</form>
+
+{% endblock %}

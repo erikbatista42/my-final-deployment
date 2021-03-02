@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Gamestop Finder</h1>
+
+<p><em>The best place to find Gamestops and view the games they're carrying!</em></p>
+
+<h2>All Gamestops</h2>
+
+{% for gamestop in all_gamestops %}
+<div class="store">
+    <a href="/gamestop/{{ gamestop.id }}">{{ gamestop.title }}</a> - 
+    {{ gamestop.games|length }} games
+    <p><strong>Address:</strong> {{ gamestop.address }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}
